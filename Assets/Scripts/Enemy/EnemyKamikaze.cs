@@ -12,6 +12,8 @@ public class EnemyKamikaze : Enemy, IDamageable
     // Start is called before the first frame update
     void Start()
     {
+        Transform playerPos = GameObject.Find("Player").GetComponent<Transform>();
+
         HitPoints = base._hitpoints;
         Speed = base._speed;
     }
@@ -35,9 +37,35 @@ public class EnemyKamikaze : Enemy, IDamageable
         }
     }
 
+    public float num;
+    public bool dontChase;
     public override void Movement()
     {
-        transform.Translate(Vector2.down * _speed * Time.deltaTime);
+        Transform playerPos = GameObject.Find("Player").GetComponent<Transform>();
+        num += Time.deltaTime;
+
+        Debug.Log(Vector2.Distance(transform.position, playerPos.position));
+
+
+        Vector2 xTarget = new Vector2(playerPos.position.x, transform.position.y);
+        if (Vector2.Distance(transform.position, playerPos.position) <= 3)
+        {
+            dontChase = true;
+        }
+        transform.position = Vector2.Lerp(transform.position, xTarget, 4 * Time.deltaTime);
+
+
+        if (!dontChase)
+        {
+        }
+        else
+        {
+            //transform.position = new Vector2(transform.position.x, transform.position.y * _speed * Time.deltaTime);
+        }
+
+
+        transform.position += Vector3.down * _speed * Time.deltaTime;
+
 
     }
 
