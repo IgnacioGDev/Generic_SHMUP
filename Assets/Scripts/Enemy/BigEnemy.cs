@@ -12,6 +12,8 @@ public class BigEnemy : MonoBehaviour
     float _vSpeed;
     [SerializeField]
     bool _isMovingRight;
+    [SerializeField]
+    GameObject _ammo;
 
 
     [SerializeField]
@@ -29,6 +31,7 @@ public class BigEnemy : MonoBehaviour
     void Update()
     {
         //VerticalMovement();
+        Fire1();
     }
 
     private void FixedUpdate()
@@ -97,7 +100,7 @@ public class BigEnemy : MonoBehaviour
 
             if (isFacingRight)
             {
-                transform.position = Vector2.Lerp(new Vector2(startPosition.x, transform.position.y), new Vector2(test.x * 0.615f, transform.position.y), Mathf.SmoothStep(0,1,percentageComplete));
+                transform.position = Vector2.Lerp(new Vector2(startPosition.x, transform.position.y), new Vector2(test.x * 0.615f, transform.position.y), Mathf.SmoothStep(0, 1, percentageComplete));
 
                 //transform.position = Vector2.Lerp(transform.position, new Vector2(test.x * 0.65f, transform.position.y), _speed * Time.deltaTime);
                 //transform.Translate(Vector2.right * _speed * Time.deltaTime);
@@ -116,7 +119,7 @@ public class BigEnemy : MonoBehaviour
         }
         if (_isAllowed == false)
         {
-            
+
 
             verticalElapsedTime += Time.deltaTime;
 
@@ -127,7 +130,7 @@ public class BigEnemy : MonoBehaviour
             {
                 //transform.position = Vector2.Lerp(transform.position, (transform.position - new Vector3(0, 2)), _vSpeed * Time.deltaTime);
                 //transform.Translate(Vector2.down * _vSpeed * Time.deltaTime);
-                transform.position = Vector2.Lerp(new Vector2(transform.position.x, newPosition.y), new Vector2(transform.position.x, newPosition.y - 2f), Mathf.SmoothStep(0,1,verticalPercComplete));
+                transform.position = Vector2.Lerp(new Vector2(transform.position.x, newPosition.y), new Vector2(transform.position.x, newPosition.y - 2f), Mathf.SmoothStep(0, 1, verticalPercComplete));
 
             }
             else
@@ -137,6 +140,34 @@ public class BigEnemy : MonoBehaviour
                 isFacingRight = !isFacingRight;
             }
             elapsedTime = 0;
+        }
+
+    }
+
+
+    public float fireTimeCounter;
+    private bool isAbleToShoot = true;
+    void Fire1()
+    {
+        fireTimeCounter += Time.deltaTime;
+
+        if (fireTimeCounter > 3)
+        {
+            isAbleToShoot = true;
+            if (isAbleToShoot)
+            {
+                Instantiate(_ammo, transform.position, transform.rotation * Quaternion.Euler(0f, 0f, 180));
+                Instantiate(_ammo, transform.position, transform.rotation * Quaternion.Euler(0f, 0f, 135));
+                Instantiate(_ammo, transform.position, transform.rotation * Quaternion.Euler(0f, 0f, -135));
+                Instantiate(_ammo, transform.position, transform.rotation * Quaternion.Euler(0f, 0f, 90));
+                Instantiate(_ammo, transform.position, transform.rotation * Quaternion.Euler(0f, 0f, -90));
+                Instantiate(_ammo, transform.position, transform.rotation * Quaternion.Euler(0f, 0f, 45));
+                Instantiate(_ammo, transform.position, transform.rotation * Quaternion.Euler(0f, 0f, -45));
+                Instantiate(_ammo, transform.position, transform.rotation * Quaternion.identity);
+
+                isAbleToShoot = false;
+                fireTimeCounter = 0;
+            }
         }
 
     }
