@@ -39,7 +39,7 @@ public class ChargeShot : MonoBehaviour
         //ADDED TODAY 16/05
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            EnemyKamikaze enemy = collision.gameObject.GetComponent<EnemyKamikaze>();
+            NormalEnemy enemy = collision.gameObject.GetComponent<NormalEnemy>();
             _hitPoints -= enemy.HitPoints;
 
             if (_hitPoints <= 0)

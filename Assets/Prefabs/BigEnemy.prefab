@@ -98,8 +98,10 @@ MonoBehaviour:
   _magnitude: 6
   _vSpeed: 1
   _isMovingRight: 0
+  _ammo: {fileID: 4050076617285193199, guid: 296d2ede6ea9aac4784bed9a38c35386, type: 3}
   _isAllowed: 1
   counter: 0
   isFacingRight: 1
   desiredDuration: 7
   verticalDesiredDuration: 3
+  fireTimeCounter: 0

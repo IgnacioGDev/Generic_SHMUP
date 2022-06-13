@@ -39,12 +39,12 @@ public class MiddleShot : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            EnemyKamikaze enemy = collision.GetComponent<EnemyKamikaze>();
-            _hitPoints -= enemy.GetHitPoints();
-            if (_hitPoints <= 0)
-            {
-                Destroy(gameObject);
-            }
+            NormalEnemy enemy = collision.gameObject.GetComponent<NormalEnemy>();
+            //_hitPoints -= enemy.GetHitPoints();
+            //if (_hitPoints <= 0)
+            //{
+            //    Destroy(gameObject);
+            //}
         }
 
         if (hit != null)

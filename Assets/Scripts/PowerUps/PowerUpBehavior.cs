@@ -8,7 +8,7 @@ public class PowerUpBehavior : MonoBehaviour
     private float _speed;
     [SerializeField]
     private int _powerUpId;
-    private int _randomIdMin = 2, _randomIdMax = 3;
+    private int _randomIdMin = 0, _randomIdMax = 5;
     Rigidbody2D rb;
     [SerializeField]
     private Vector2 pos;
@@ -51,7 +51,7 @@ public class PowerUpBehavior : MonoBehaviour
         int randomNum = Random.Range(0, 5);
         //Debug.Log("Random number is: " + randomNum);
 
-        if (randomNum >= 0)
+        if (randomNum >= 4)
         {
             Instantiate(gameObject, enemyTransform.position, Quaternion.identity);
         }
